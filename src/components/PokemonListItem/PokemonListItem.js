@@ -16,6 +16,7 @@ export const PokemonListItem = ({pokemon}) => {
                 // console.log(response.data);
                 setPokemonInfo(response.data);
             })
+            
     // eslint-disable-next-line
     }, [])
 

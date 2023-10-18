@@ -1,13 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getPokemonInfo } from "redux/pokemons/actions";
-import { selectLoading } from "redux/pokemons/selectors";
+// import { useDispatch } from "react-reduxemons/selectors";
 
 export const PokemonListItem = ({pokemon}) => {
     const [pokemonInfo, setPokemonInfo] = useState(null);
     const [loading, setLoading] = useState(false);
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     
     useEffect(() => {
         // dispatch(getPokemonInfo(pokemon.name))
@@ -18,6 +16,7 @@ export const PokemonListItem = ({pokemon}) => {
                 // console.log(response.data);
                 setPokemonInfo(response.data);
             })
+    // eslint-disable-next-line
     }, [])
 
     return (

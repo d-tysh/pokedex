@@ -1,5 +1,5 @@
 import { PokemonListItem } from "components/PokemonListItem/PokemonListItem"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchPokemons } from "redux/pokemons/actions";
 import { selectLoading, selectPokemons } from "redux/pokemons/selectors";
@@ -14,6 +14,7 @@ export const PokemonList = ({setSelectedPokemon}) => {
     useEffect(() => {
         dispatch(fetchPokemons(offset));
         setOffset(offset => offset + 12);
+        // eslint-disable-next-line
     }, [])
 
     const loadMorePokemons = () => {

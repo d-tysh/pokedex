@@ -3,6 +3,8 @@ import { Header } from "./Header/Header";
 import { PokemonInfo } from "./PokemonInfo/PokemonInfo";
 import { PokemonList } from "./PokemonList/PokemonList";
 import { FilterByType } from "./FilterByType/FilterByType";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const App = () => {
   const [selectedPokemon, setSelectedPokemon] = useState(null);
@@ -15,6 +17,7 @@ export const App = () => {
         <PokemonList setSelectedPokemon={setSelectedPokemon} />
         { selectedPokemon && <PokemonInfo selectedPokemon={selectedPokemon} /> }
       </div>
+      <ToastContainer />
     </div>
   );
 };

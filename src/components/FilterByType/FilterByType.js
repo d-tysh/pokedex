@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 import { getPokemonsByFilter } from "redux/pokemons/actions";
 
 export const FilterByType = () => {
@@ -7,7 +8,10 @@ export const FilterByType = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (!e.target.filter.value) return;
+        if (!e.target.filter.value) {
+            toast.info('Enter filter!');
+            return;
+        }
         dispatch(getPokemonsByFilter(e.target.filter.value.toLowerCase()));
         e.target.reset();
     }

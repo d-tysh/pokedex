@@ -29,7 +29,7 @@ To run this client app, follow these steps:
 ## Technologies Used
 
 1. React
-2. Redux
+2. Redux Toolkit
 3. Tailwind CSS
 
 ## Deployment

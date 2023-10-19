@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 axios.defaults.baseURL = 'https://pokeapi.co/api/v2/';
 
@@ -34,6 +35,7 @@ export const getPokemonsByFilter = createAsyncThunk(
             const response = await axios.get(`type/${type}`);
             return response.data;
         } catch (e) {
+            toast.error(`No data for "${type}"`);
             return thunkAPI.rejectWithValue(e.message);
         }
     }

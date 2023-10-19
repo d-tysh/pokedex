@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Loader } from "components/Loader/Loader";
 import { useEffect, useState } from "react"
+import { PokemonTable } from "./PokemonTable";
 
 export const PokemonInfo = ({selectedPokemon}) => {
     const [pokemonInfo, setPokemonInfo] = useState(null);
@@ -32,24 +33,9 @@ export const PokemonInfo = ({selectedPokemon}) => {
                     />
                 </div>
                 <p className="my-2 text-center font-bold text-xl">
-                    {selectedPokemon[0].toUpperCase() + selectedPokemon.slice(1) + ` #` + (pokemonInfo?.id < 10 ? ('00' + pokemonInfo?.id) : pokemonInfo?.id)}
+                    {selectedPokemon[0].toUpperCase() + selectedPokemon.slice(1) + ` ` + (pokemonInfo?.id < 10 ? ('#00' + pokemonInfo?.id) : pokemonInfo?.id)}
                 </p>
-                <table className="w-[100%] border">
-                    <thead className="text-center">
-                        <tr>
-                            <td className="border border-black w-[75%]">Type</td>
-                            <td className="border border-black w-[25%]">Fire</td>
-                        </tr>
-                    </thead>
-                    <tbody className="text-center">
-                        {
-                            pokemonInfo?.stats?.map(stat => <tr key={stat.stat.name} className="border">
-                                <td className="border border-black">{stat.stat.name[0].toUpperCase() + stat.stat.name.slice(1)}</td>
-                                <td className="border border-black">{stat?.['base_stat']}</td>
-                            </tr>)
-                        }
-                    </tbody>
-                </table>
+                <PokemonTable pokemonInfo={pokemonInfo} />
             </div>}
         </>
     )

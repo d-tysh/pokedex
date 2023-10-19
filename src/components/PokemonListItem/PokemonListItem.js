@@ -1,7 +1,6 @@
 import axios from "axios";
 import { Loader } from "components/Loader/Loader";
 import { useEffect, useState } from "react";
-// import cn from 'classnames';
 
 export const PokemonListItem = ({pokemon, typesInfo}) => {
     const [pokemonInfo, setPokemonInfo] = useState(null);

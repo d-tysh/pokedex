@@ -13,8 +13,8 @@ This is a simple web application to access and display information about Pokemon
 ## API Endpoints
 
 1. [List of Pokemon](https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=12)
-2. [Pokemon Details](https://pokeapi.co/api/v2/pokemon/{selectedPokemon})
-3. [List of Pokemon Types](https://pokeapi.co/api/v2/type/{type})
+2. [Pokemon Details](https://pokeapi.co/api/v2/pokemon/)
+3. [List of Pokemon Types](https://pokeapi.co/api/v2/type/)
 
 ## Getting Started
 

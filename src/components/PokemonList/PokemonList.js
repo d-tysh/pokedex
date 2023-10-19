@@ -1,5 +1,6 @@
+import { Loader } from "components/Loader/Loader";
 import { PokemonListItem } from "components/PokemonListItem/PokemonListItem"
-import { useEffect } from "react"
+import { useEffect, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchPokemons, getTypes } from "redux/pokemons/actions";
 import { selectLoading, selectOffset, selectPage, selectPokemons, selectTotalPokemons, selectTypes } from "redux/pokemons/selectors";
@@ -19,22 +20,13 @@ export const PokemonList = ({setSelectedPokemon}) => {
     // eslint-disable-next-line
     }, [])
 
-    // console.log(pokemonsTypes);
-    const typesInfo = pokemonsTypes.map(type => {
-        return {
-            name: type,
-            color: '#' + Math.floor(Math.random()*16777215).toString(16)
-        }
-    })
-
-    // const typesInfo = useMemo(() => {
-    //     pokemonsTypes.map(type => {
-    //         return {
-    //             name: type,
-    //             color: '#' + Math.floor(Math.random()*16777215).toString(16)
-    //         }
-    //     })
-    // }, [pokemonsTypes])
+    const typesInfo = useMemo(
+        () => pokemonsTypes.map(type => {
+            return {
+                name: type,
+                color: '#' + Math.floor(Math.random()*16777215).toString(16)
+            }
+    }), [pokemonsTypes]);
 
     const loadMorePokemons = () => {
         dispatch(fetchPokemons(offset));
@@ -43,7 +35,7 @@ export const PokemonList = ({setSelectedPokemon}) => {
     return (
         <div className="w-[70%]">
             {
-                loading && <div>loading...</div>
+                loading && <Loader />
             }
             {
                 
@@ -52,12 +44,15 @@ export const PokemonList = ({setSelectedPokemon}) => {
                             pokemons.map((pokemon) => <li 
                                 key={pokemon.name} 
                                 onClick={() => setSelectedPokemon(pokemon.name)} 
-                                className="w-[90%] sm:w-[calc((100%-16px)/2)] md:w-[calc((100%-32px)/3)] border border-black py-3 px-2 cursor-pointer">
+                                className="w-[90%] sm:w-[calc((100%-16px)/2)] md:w-[calc((100%-32px)/3)] border border-black pt-3 pb-6 px-2 cursor-pointer">
                                     <PokemonListItem pokemon={pokemon} typesInfo={typesInfo} />
                             </li>)
                         }
                     </ul>
                 
+            }
+            {
+                loading && <Loader />
             }
             {
                 !loading && ((page - 1) < (totalPokemons / 12)) && <button 

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Loader } from "components/Loader/Loader";
 import { useEffect, useState } from "react"
 
 export const PokemonInfo = ({selectedPokemon}) => {
@@ -19,15 +20,17 @@ export const PokemonInfo = ({selectedPokemon}) => {
 
     return (
         <>
-            {loading && <div>loading...</div>}
+            {loading && <Loader />}
             {!loading && <div className="p-2 border border-black w-[50%] sm:w-[25%] inline-block sticky top-8">
                 <div className="border">
                     <img 
                         src={pokemonInfo?.sprites?.other?.['dream_world']?.['front_default']} 
-                        alt="Pokemon info img" className="mx-auto" 
+                        alt={selectedPokemon} className="mx-auto" 
                     />
                 </div>
-                <p className="my-2 text-center font-bold text-xl">{selectedPokemon[0].toUpperCase() + selectedPokemon.slice(1)}</p>
+                <p className="my-2 text-center font-bold text-xl">
+                    {selectedPokemon[0].toUpperCase() + selectedPokemon.slice(1) + ` #` + (pokemonInfo?.id < 10 ? ('00' + pokemonInfo?.id) : pokemonInfo?.id)}
+                </p>
                 <table className="w-[100%] border">
                     <thead className="text-center">
                         <tr>

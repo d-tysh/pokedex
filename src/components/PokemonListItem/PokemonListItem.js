@@ -26,7 +26,10 @@ export const PokemonListItem = ({pokemon, typesInfo}) => {
                 {loading ? <Loader /> : 
                     <div className="border w-[calc(100%-8px)] mb-2">
                         <img 
-                            src={pokemonInfo?.sprites.other?.['dream_world']?.['front_default']} 
+                            src={pokemonInfo?.sprites.other?.['dream_world']?.['front_default'] 
+                                ? pokemonInfo?.sprites.other?.['dream_world']?.['front_default']
+                                : 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png'
+                            } 
                             alt={pokemon.name} 
                             className="w-20 h-20 mx-auto" />
                     </div>}

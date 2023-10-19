@@ -24,7 +24,10 @@ export const PokemonInfo = ({selectedPokemon}) => {
             {!loading && <div className="p-2 border border-black w-[50%] sm:w-[25%] inline-block sticky top-8">
                 <div className="border">
                     <img 
-                        src={pokemonInfo?.sprites?.other?.['dream_world']?.['front_default']} 
+                        src={pokemonInfo?.sprites.other?.['dream_world']?.['front_default'] 
+                            ? pokemonInfo?.sprites.other?.['dream_world']?.['front_default']
+                            : 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png'
+                        }    
                         alt={selectedPokemon} className="mx-auto" 
                     />
                 </div>

@@ -26,3 +26,15 @@ export const getTypes = createAsyncThunk(
         }
     }
 )
+
+export const getPokemonsByFilter = createAsyncThunk(
+    'pokemons/getPokemonsByFilter',
+    async (type, thunkAPI) => {
+        try {
+            const response = await axios.get(`type/${type}`);
+            return response.data;
+        } catch (e) {
+            return thunkAPI.rejectWithValue(e.message);
+        }
+    }
+)

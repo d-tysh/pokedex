@@ -1,24 +1,25 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-// import { useDispatch } from "react-reduxemons/selectors";
+// import cn from 'classnames';
 
-export const PokemonListItem = ({pokemon}) => {
+export const PokemonListItem = ({pokemon, typesInfo}) => {
     const [pokemonInfo, setPokemonInfo] = useState(null);
     const [loading, setLoading] = useState(false);
-    // const dispatch = useDispatch();
     
     useEffect(() => {
-        // dispatch(getPokemonInfo(pokemon.name))
         setLoading(true);
         axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
             .then(response => {
                 setLoading(false);
-                // console.log(response.data);
                 setPokemonInfo(response.data);
             })
+            .catch(e => console.error(e))
+            .finally(() => setLoading(false));
             
     // eslint-disable-next-line
     }, [])
+
+    // console.log(typesInfo);
 
     return (
         <>
@@ -32,7 +33,11 @@ export const PokemonListItem = ({pokemon}) => {
                 loading ? <div>Loading...</div> :
                 <div className="flex gap-1 flex-wrap">
                 {
-                    pokemonInfo?.types.map(type => <span key={type.type.name} className="px-2 py-1 bg-orange-400 rounded-md text-xs">
+                    pokemonInfo?.types.map(type => <span 
+                        key={type.type.name}
+                        className="px-2 py-1 rounded-md text-xs border"
+                        style={{ backgroundColor: typesInfo?.find(item => type.type.name === item.name).color }}
+                    >
                         {type.type.name}
                     </span>)
                 }

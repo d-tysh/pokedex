@@ -7,9 +7,8 @@ export const fetchPokemons = createAsyncThunk(
     'pokemons/fetchPokemons',
     async (offset, thunkAPI) => {
         try {
-            // console.log(offset);
             const response = await axios.get(`/pokemon/?offset=${offset}&limit=12`);
-            // console.log(response.data);
+            console.log(response.data);
             return response.data;
         } catch (e) {
             return thunkAPI.rejectWithValue(e.message);
@@ -17,12 +16,12 @@ export const fetchPokemons = createAsyncThunk(
     }
 )
 
-export const getPokemonInfo = createAsyncThunk(
-    'pokemons/getPokemonInfo',
-    async (name, thunkAPI) => {
+export const getTypes = createAsyncThunk(
+    'pokemons/getTypes',
+    async (_, thunkAPI) => {
         try {
-            const response = await axios.get(`pokemon/${name}`);
-            // console.log(response.data);
+            const response = await axios.get(`type/`);
+            // console.log(response.data.results.map(type => type.name));
             return response.data;
         } catch (e) {
             return thunkAPI.rejectWithValue(e.message);

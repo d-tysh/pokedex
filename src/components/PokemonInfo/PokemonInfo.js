@@ -33,7 +33,7 @@ export const PokemonInfo = ({selectedPokemon}) => {
                     />
                 </div>
                 <p className="my-2 text-center font-bold text-xl">
-                    {selectedPokemon[0].toUpperCase() + selectedPokemon.slice(1) + ` ` + (pokemonInfo?.id < 10 ? ('#00' + pokemonInfo?.id) : pokemonInfo?.id)}
+                    {selectedPokemon[0].toUpperCase() + selectedPokemon.slice(1) + ` #` + (pokemonInfo?.id < 10 ? ('00' + pokemonInfo?.id) : pokemonInfo?.id)}
                 </p>
                 <PokemonTable pokemonInfo={pokemonInfo} />
             </div>}

@@ -26,6 +26,8 @@ To run this client app, follow these steps:
 4. Start the project by "npm start".
 3. Open the project using a development server.
 
+You can see the working project at the link [github.com/d-tysh/pokedex](https://github.com/d-tysh/pokedex).
+
 ## Technologies Used
 
 1. React

@@ -2,7 +2,7 @@ import axios from "axios";
 import { Loader } from "components/Loader/Loader";
 import { useEffect, useState } from "react";
 
-export const PokemonListItem = ({pokemon, typesInfo}) => {
+export const PokemonListItem = ({pokemon, typesInfo, setPokemonsInfo}) => {
     const [pokemonInfo, setPokemonInfo] = useState(null);
     const [loading, setLoading] = useState(false);
     
@@ -12,6 +12,9 @@ export const PokemonListItem = ({pokemon, typesInfo}) => {
             .then(response => {
                 setLoading(false);
                 setPokemonInfo(response.data);
+                setPokemonsInfo(state => {
+                    return [...state, response.data]
+                })
             })
             .catch(e => console.error(e))
             .finally(() => setLoading(false));

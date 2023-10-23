@@ -1,28 +1,16 @@
-import axios from "axios";
-import { Loader } from "components/Loader/Loader";
 import { useEffect, useState } from "react"
 import { PokemonTable } from "./PokemonTable";
 
-export const PokemonInfo = ({selectedPokemon}) => {
+export const PokemonInfo = ({selectedPokemon, pokemonsInfo}) => {
     const [pokemonInfo, setPokemonInfo] = useState(null);
-    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        // console.log('render');
-        setLoading(true);
-        axios.get(`https://pokeapi.co/api/v2/pokemon/${selectedPokemon}`)
-            .then(response => {
-                setLoading(false);
-                setPokemonInfo(response.data);
-            })
-            .catch(e => console.error(e))
-            .finally(() => setLoading(false));
-    }, [selectedPokemon])
+        setPokemonInfo(pokemonsInfo.find(pokemon => pokemon.name === selectedPokemon));
+    }, [pokemonsInfo, selectedPokemon]);
 
     return (
         <>
-            {loading && <Loader />}
-            {!loading && <div className="p-2 border border-black w-[50%] sm:w-[25%] inline-block sticky top-8">
+            <div className="p-2 border border-black w-[50%] sm:w-[25%] inline-block sticky top-8">
                 <div className="border">
                     <img 
                         src={pokemonInfo?.sprites.other?.['dream_world']?.['front_default'] 
@@ -36,7 +24,7 @@ export const PokemonInfo = ({selectedPokemon}) => {
                     {selectedPokemon[0].toUpperCase() + selectedPokemon.slice(1) + ` #` + (pokemonInfo?.id < 10 ? ('00' + pokemonInfo?.id) : pokemonInfo?.id)}
                 </p>
                 <PokemonTable pokemonInfo={pokemonInfo} />
-            </div>}
+            </div>
         </>
     )
 }

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { fetchPokemons, getTypes } from "redux/pokemons/actions";
 import { selectFilteredPokemons, selectLoading, selectOffset, selectPage, selectPokemons, selectTotalPokemons, selectTypes } from "redux/pokemons/selectors";
 
-export const PokemonList = ({setSelectedPokemon}) => {
+export const PokemonList = ({setSelectedPokemon, setPokemonsInfo}) => {
     const pokemons = useSelector(selectPokemons);
     const loading = useSelector(selectLoading);
     const dispatch = useDispatch();
@@ -47,7 +47,7 @@ export const PokemonList = ({setSelectedPokemon}) => {
                                 key={pokemon.name} 
                                 onClick={() => setSelectedPokemon(pokemon.name)} 
                                 className="w-[90%] sm:w-[calc((100%-16px)/2)] md:w-[calc((100%-32px)/3)] border border-black pt-3 pb-6 px-2 cursor-pointer">
-                                    <PokemonListItem pokemon={pokemon} typesInfo={typesInfo} />
+                                    <PokemonListItem pokemon={pokemon} typesInfo={typesInfo} setPokemonsInfo={setPokemonsInfo} />
                             </li>)
                         }
                     </ul>
